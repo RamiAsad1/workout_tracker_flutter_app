@@ -6,6 +6,11 @@ import 'package:workout_tracker/presentation/widgets/misc/background_container.d
 import 'package:workout_tracker/screens/Home%20screen/history_screen.dart';
 import 'package:workout_tracker/screens/Home%20screen/settings_screen.dart';
 
+//TODO: implement and populate isar db
+//TODO: homescreen contents (search bar, created workouts, add button)
+//TODO: settings page (for now only contain units, language change option)
+//TODO: history page (calendar of active days, last workout details)
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
