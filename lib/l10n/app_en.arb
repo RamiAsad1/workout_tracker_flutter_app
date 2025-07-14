@@ -1,0 +1,15 @@
+{
+    "@@locale": "en",
+    "historyLabel": "History",
+    "@historyLabel": {
+        "description": "label for the history bottom navigation bar item"
+    },
+    "workoutLabel": "Workouts",
+    "@workoutLabel": {
+        "description": "label for the workout bottom navigation bar item"
+    },
+    "settingsLabel": "Settings",
+    "@settingsLabel": {
+        "description": "label for the settings bottom navigation bar item"
+    }
+}
