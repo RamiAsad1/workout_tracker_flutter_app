@@ -2,7 +2,7 @@ name: workout_tracker
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -40,15 +40,20 @@ dependencies:
   flutter_svg: ^2.2.0
   image_picker: ^1.1.2
   intl: any
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.5
   permission_handler: ^12.0.0+1
   shared_preferences: ^2.5.3
   transparent_image: ^2.0.1
   uuid: ^4.5.1
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
+  isar_generator: ^3.1.0+1
 
 # flutter_native_splash:
 #   color: "#3da6b3"
@@ -59,11 +64,11 @@ dev_dependencies:
 #   ios: true
 #   web: false
 
-  # android_12:
-  #   color: "#3da6b3"
-  #   image: assets/images/meal.png
-  #   android_gravity: center
-  #   ios_content_mode: scaleAspectFit
+# android_12:
+#   color: "#3da6b3"
+#   image: assets/images/meal.png
+#   android_gravity: center
+#   ios_content_mode: scaleAspectFit
 
 # flutter_icons:
 #   android: true
