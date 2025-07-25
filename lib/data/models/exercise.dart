@@ -8,11 +8,9 @@ class Exercise {
 
   late String name;
 
+  late String description;
+
   late String weightType;
 
-  late int sets;
-
-  late int reps;
-
-  late double weight;
+  late String mucleGroup;
 }

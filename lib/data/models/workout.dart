@@ -10,7 +10,18 @@ class Workout {
 
   late String name;
 
-  late String description;
+  late DateTime date;
 
   final exercises = IsarLinks<Exercise>();
+}
+
+@embedded
+class WorkoutExercise {
+  late int exerciseId;
+
+  late int reps;
+
+  late int sets;
+
+  double? weight;
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:workout_tracker/data/repository/exercise/exercise_repository.dart';
+import 'package:workout_tracker/data/models/exercise.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/language_constants.dart';
 import 'package:workout_tracker/screens/Home%20screen/home_screen.dart';
@@ -19,9 +22,23 @@ class AppRoot extends StatefulWidget {
 class _AppRootState extends State<AppRoot> {
   Locale? _locale;
 
+  Future<void> _populateExercises() async {
+    final repository = context.read<ExerciseRepository>();
+    final existingExercises = await repository.fetchExercises();
+
+    if (existingExercises.isEmpty) {
+      final defaultExercises = [];
+
+      for (final exercise in defaultExercises) {
+        await repository.addExercise(exercise);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _populateExercises();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final locale = await getLocale();
       if (mounted) setState(() => _locale = locale);
