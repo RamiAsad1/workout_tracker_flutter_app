@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:workout_tracker/data/models/workout.dart';
@@ -6,45 +5,85 @@ import 'package:workout_tracker/data/repository/workout/workout_repository.dart'
 
 part 'workout_state.dart';
 
-//TODO: localize all of the error messages
 class WorkoutCubit extends Cubit<WorkoutState> {
   final WorkoutRepository repository;
 
-  WorkoutCubit(this.repository) : super(WorkoutInitial());
+  WorkoutCubit(this.repository) : super(WorkoutState.initial());
 
   Future<void> loadWorkouts() async {
+    emit(state.copyWith(isLoading: true, errorMessage: null));
     try {
       final workouts = await repository.fetchWorkouts();
-      emit(WorkoutLoaded(workouts));
+      emit(
+        state.copyWith(
+          allWorkouts: workouts,
+          filteredWorkouts: workouts,
+          isLoading: false,
+        ),
+      );
     } catch (e) {
-      emit(WorkoutError('Failed to load workouts: $e'));
+      emit(
+        state.copyWith(
+          isLoading: false,
+          errorMessage: 'Failed to load workouts, please try again later',
+        ),
+      );
     }
   }
 
   Future<void> addWorkout(Workout workout) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null));
     try {
       await repository.addWorkout(workout);
       await loadWorkouts();
     } catch (e) {
-      emit(WorkoutError('Failed to add workout: $e'));
+      emit(
+        state.copyWith(
+          isLoading: false,
+          errorMessage: 'Failed to add workout, please try again later',
+        ),
+      );
     }
   }
 
   Future<void> updateWorkout(Workout workout) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null));
     try {
       await repository.updateWorkout(workout);
       await loadWorkouts();
     } catch (e) {
-      emit(WorkoutError('Failed to update workout: $e'));
+      emit(
+        state.copyWith(
+          isLoading: false,
+          errorMessage: 'Failed to update workout, please try again later',
+        ),
+      );
     }
   }
 
   Future<void> deleteWorkout(int id) async {
+    emit(state.copyWith(isLoading: true, errorMessage: null));
     try {
       await repository.deleteWorkout(id);
       await loadWorkouts();
     } catch (e) {
-      emit(WorkoutError('Failed to delete workout: $e'));
+      emit(
+        state.copyWith(
+          isLoading: false,
+          errorMessage: 'Failed to delete workout, please try again later',
+        ),
+      );
+    }
+  }
+
+  void searchWorkouts(String query) {
+    if (query.isEmpty) {
+      emit(state.copyWith(filteredWorkouts: state.allWorkouts));
+    } else {
+      final filtered = state.allWorkouts.where((workout) {
+        return workout.name.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+      emit(state.copyWith(filteredWorkouts: filtered));
     }
   }
 }

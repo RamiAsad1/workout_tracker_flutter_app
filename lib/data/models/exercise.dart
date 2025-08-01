@@ -13,4 +13,6 @@ class Exercise {
   late String weightType;
 
   late String mucleGroup;
+
+  late String imagePath;
 }

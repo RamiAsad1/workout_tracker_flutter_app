@@ -115,6 +115,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settingsLabel;
+
+  /// Error message displayed when exercises fail to load
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load exercises'**
+  String get exerciseLoadError;
+
+  /// Error message displayed when adding an exercise fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add exercise'**
+  String get exerciseAddError;
+
+  /// Error message displayed when deleting an exercise fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete exercise'**
+  String get exerciseDeleteError;
+
+  /// Error message displayed when updating an exercise fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update exercise'**
+  String get exerciseUpdateError;
+
+  /// Error message displayed when workouts fail to load
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load workouts'**
+  String get workoutLoadError;
+
+  /// Error message displayed when adding a workout fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to add workout'**
+  String get workoutAddError;
+
+  /// Error message displayed when deleting a workout fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete workout'**
+  String get workoutDeleteError;
+
+  /// Error message displayed when updating a workout fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update workout'**
+  String get workoutUpdateError;
+
+  /// Placeholder text for the exercise search bar
+  ///
+  /// In en, this message translates to:
+  /// **'Search exercises...'**
+  String get searchBarHint;
+
+  /// Message displayed when no exercises match the search criteria
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises found'**
+  String get noExercisesFoundErrorMessage;
+
+  /// Label for the section displaying user's workouts
+  ///
+  /// In en, this message translates to:
+  /// **'My Workouts'**
+  String get myWorkoutsLabel;
+
+  /// Message displayed when no workouts are found
+  ///
+  /// In en, this message translates to:
+  /// **'You have no workouts yet.\nStart by adding some exercises!'**
+  String get noWorkoutsFoundErrorMessage;
+
+  /// Label for displaying the last session date of a workout
+  ///
+  /// In en, this message translates to:
+  /// **'Last session was: {date}'**
+  String lastSessionLabel(String date);
 }
 
 class _AppLocalizationsDelegate

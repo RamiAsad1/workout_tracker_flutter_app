@@ -16,4 +16,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsLabel => 'Settings';
+
+  @override
+  String get exerciseLoadError => 'Failed to load exercises';
+
+  @override
+  String get exerciseAddError => 'Failed to add exercise';
+
+  @override
+  String get exerciseDeleteError => 'Failed to delete exercise';
+
+  @override
+  String get exerciseUpdateError => 'Failed to update exercise';
+
+  @override
+  String get workoutLoadError => 'Failed to load workouts';
+
+  @override
+  String get workoutAddError => 'Failed to add workout';
+
+  @override
+  String get workoutDeleteError => 'Failed to delete workout';
+
+  @override
+  String get workoutUpdateError => 'Failed to update workout';
+
+  @override
+  String get searchBarHint => 'Search exercises...';
+
+  @override
+  String get noExercisesFoundErrorMessage => 'No exercises found';
+
+  @override
+  String get myWorkoutsLabel => 'My Workouts';
+
+  @override
+  String get noWorkoutsFoundErrorMessage =>
+      'You have no workouts yet.\nStart by adding some exercises!';
+
+  @override
+  String lastSessionLabel(String date) {
+    return 'Last session was: $date';
+  }
 }

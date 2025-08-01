@@ -11,5 +11,75 @@
     "settingsLabel": "Settings",
     "@settingsLabel": {
         "description": "label for the settings bottom navigation bar item"
+    },
+
+    "exerciseLoadError": "Failed to load exercises",
+    "@exerciseLoadError": {
+        "description": "Error message displayed when exercises fail to load"
+    },
+
+    "exerciseAddError": "Failed to add exercise",
+    "@exerciseAddError": {
+        "description": "Error message displayed when adding an exercise fails"
+    },
+
+    "exerciseDeleteError": "Failed to delete exercise",
+    "@exerciseDeleteError": {
+        "description": "Error message displayed when deleting an exercise fails"
+    },
+
+    "exerciseUpdateError": "Failed to update exercise",
+    "@exerciseUpdateError": {
+        "description": "Error message displayed when updating an exercise fails"
+    },
+
+    "workoutLoadError": "Failed to load workouts",
+    "@workoutLoadError": {
+        "description": "Error message displayed when workouts fail to load"
+    },
+
+    "workoutAddError": "Failed to add workout",
+    "@workoutAddError": {   
+        "description": "Error message displayed when adding a workout fails"
+    },
+
+    "workoutDeleteError": "Failed to delete workout",
+    "@workoutDeleteError": {
+        "description": "Error message displayed when deleting a workout fails"
+    },
+
+    "workoutUpdateError": "Failed to update workout",
+    "@workoutUpdateError": {
+        "description": "Error message displayed when updating a workout fails"
+    },
+
+    "searchBarHint": "Search exercises...",
+    "@searchBarHint": { 
+        "description": "Placeholder text for the exercise search bar"
+    },
+
+    "noExercisesFoundErrorMessage": "No exercises found",
+    "@noExercisesFoundErrorMessage": {
+        "description": "Message displayed when no exercises match the search criteria"
+    },
+
+    "myWorkoutsLabel": "My Workouts",
+    "@myWorkoutsLabel": {
+        "description": "Label for the section displaying user's workouts"
+    },
+
+    "noWorkoutsFoundErrorMessage": "You have no workouts yet.\nStart by adding some exercises!",
+    "@noWorkoutsFoundErrorMessage": {
+        "description": "Message displayed when no workouts are found"
+    },
+
+    "lastSessionLabel": "Last session was: {date}",
+    "@lastSessionLabel": {
+        "description": "Label for displaying the last session date of a workout",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
     }
 }

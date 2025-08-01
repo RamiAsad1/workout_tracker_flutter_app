@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:workout_tracker/data/repository/exercise/exercise_repository.dart';
 import 'package:workout_tracker/data/models/exercise.dart';
+import 'package:workout_tracker/data/repository/exercise/exercise_repository.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/language_constants.dart';
 import 'package:workout_tracker/screens/Home%20screen/home_screen.dart';
@@ -27,7 +27,110 @@ class _AppRootState extends State<AppRoot> {
     final existingExercises = await repository.fetchExercises();
 
     if (existingExercises.isEmpty) {
-      final defaultExercises = [];
+      final defaultExercises = [
+        Exercise()
+          ..name = "Bent Over Rows"
+          ..description = "A back exercise using a barbell or dumbbells."
+          ..weightType = "weighted"
+          ..mucleGroup = "Back"
+          ..imagePath = "assets/images/bent-over-rows-anatomy.webp",
+        Exercise()
+          ..name = "Bicep Curls"
+          ..description = "Isolation movement for the biceps."
+          ..weightType = "weighted"
+          ..mucleGroup = "Biceps"
+          ..imagePath = "assets/images/bicep-curls-anatomy.png",
+        Exercise()
+          ..name = "Calf Raises"
+          ..description = "Targets calf muscles."
+          ..weightType = "bodyweight"
+          ..mucleGroup = "Calves"
+          ..imagePath = "assets/images/calf-raises-anatomy.webp",
+        Exercise()
+          ..name = "Dumbbell Bench Press"
+          ..description = "Chest exercise using dumbbells."
+          ..weightType = "weighted"
+          ..mucleGroup = "Chest"
+          ..imagePath = "assets/images/db-benchpress-anatomy.png",
+        Exercise()
+          ..name = "Dumbbell Flys"
+          ..description = "Chest isolation exercise."
+          ..weightType = "weighted"
+          ..mucleGroup = "Chest"
+          ..imagePath = "assets/images/db-flys-anatomy.webp",
+        Exercise()
+          ..name = "Deadlift"
+          ..description = "Full-body compound lift."
+          ..weightType = "weighted"
+          ..mucleGroup = "Back"
+          ..imagePath = "assets/images/deadlift-anatomy.gif",
+        Exercise()
+          ..name = "Diamond Push-Ups"
+          ..description = "Bodyweight triceps-focused push-up."
+          ..weightType = "bodyweight"
+          ..mucleGroup = "Triceps"
+          ..imagePath = "assets/images/diamonds-pu-anatomy.avif",
+        Exercise()
+          ..name = "Hammer Curls"
+          ..description = "Variation of bicep curl."
+          ..weightType = "weighted"
+          ..mucleGroup = "Biceps"
+          ..imagePath = "assets/images/hammer-curls-anatomy.png",
+        Exercise()
+          ..name = "Lateral Raises"
+          ..description = "Shoulder isolation with dumbbells."
+          ..weightType = "weighted"
+          ..mucleGroup = "Shoulders"
+          ..imagePath = "assets/images/lateral-raises-anatomy.webp",
+        Exercise()
+          ..name = "Lunges"
+          ..description = "Leg exercise for quads and glutes."
+          ..weightType = "bodyweight"
+          ..mucleGroup = "Legs"
+          ..imagePath = "assets/images/lunges-anatomy.webp",
+        Exercise()
+          ..name = "Overhead Press"
+          ..description = "Shoulder compound movement."
+          ..weightType = "weighted"
+          ..mucleGroup = "Shoulders"
+          ..imagePath = "assets/images/overhead-press-anatomy.webp",
+        Exercise()
+          ..name = "Overhead Triceps Extension"
+          ..description = "Isolation for triceps."
+          ..weightType = "weighted"
+          ..mucleGroup = "Triceps"
+          ..imagePath = "assets/images/overhead-triceps-extension-anatomy.webp",
+        Exercise()
+          ..name = "Push-Up"
+          ..description = "Classic bodyweight chest exercise."
+          ..weightType = "bodyweight"
+          ..mucleGroup = "Chest"
+          ..imagePath = "assets/images/pu-anatomy.webp",
+        Exercise()
+          ..name = "Rear Delt Flys"
+          ..description = "Isolation for rear delts."
+          ..weightType = "weighted"
+          ..mucleGroup = "Shoulders"
+          ..imagePath = "assets/images/rear-delt-flys-anatomy.png",
+        Exercise()
+          ..name = "Skullcrushers"
+          ..description = "Triceps isolation with bar or dumbbells."
+          ..weightType = "weighted"
+          ..mucleGroup = "Triceps"
+          ..imagePath = "assets/images/skullcrushers-anatomy.webp",
+        Exercise()
+          ..name = "Squat"
+          ..description = "Compound movement for legs and glutes."
+          ..weightType = "bodyweight"
+          ..mucleGroup = "Legs"
+          ..imagePath = "assets/images/squat-anatomy.png",
+        Exercise()
+          ..name = "Triceps Kickbacks"
+          ..description = "Triceps isolation with dumbbells."
+          ..weightType = "weighted"
+          ..mucleGroup = "Triceps"
+          ..imagePath = "assets/images/ticeps-kickbacks-anatomy.webp",
+      ];
 
       for (final exercise in defaultExercises) {
         await repository.addExercise(exercise);

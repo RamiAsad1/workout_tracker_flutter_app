@@ -22,18 +22,23 @@ const ExerciseSchema = CollectionSchema(
       name: r'description',
       type: IsarType.string,
     ),
-    r'mucleGroup': PropertySchema(
+    r'imagePath': PropertySchema(
       id: 1,
+      name: r'imagePath',
+      type: IsarType.string,
+    ),
+    r'mucleGroup': PropertySchema(
+      id: 2,
       name: r'mucleGroup',
       type: IsarType.string,
     ),
     r'name': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'name',
       type: IsarType.string,
     ),
     r'weightType': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'weightType',
       type: IsarType.string,
     )
@@ -59,6 +64,7 @@ int _exerciseEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.description.length * 3;
+  bytesCount += 3 + object.imagePath.length * 3;
   bytesCount += 3 + object.mucleGroup.length * 3;
   bytesCount += 3 + object.name.length * 3;
   bytesCount += 3 + object.weightType.length * 3;
@@ -72,9 +78,10 @@ void _exerciseSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.description);
-  writer.writeString(offsets[1], object.mucleGroup);
-  writer.writeString(offsets[2], object.name);
-  writer.writeString(offsets[3], object.weightType);
+  writer.writeString(offsets[1], object.imagePath);
+  writer.writeString(offsets[2], object.mucleGroup);
+  writer.writeString(offsets[3], object.name);
+  writer.writeString(offsets[4], object.weightType);
 }
 
 Exercise _exerciseDeserialize(
@@ -86,9 +93,10 @@ Exercise _exerciseDeserialize(
   final object = Exercise();
   object.description = reader.readString(offsets[0]);
   object.id = id;
-  object.mucleGroup = reader.readString(offsets[1]);
-  object.name = reader.readString(offsets[2]);
-  object.weightType = reader.readString(offsets[3]);
+  object.imagePath = reader.readString(offsets[1]);
+  object.mucleGroup = reader.readString(offsets[2]);
+  object.name = reader.readString(offsets[3]);
+  object.weightType = reader.readString(offsets[4]);
   return object;
 }
 
@@ -106,6 +114,8 @@ P _exerciseDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
+      return (reader.readString(offset)) as P;
+    case 4:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -381,6 +391,137 @@ extension ExerciseQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imagePath',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'imagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'imagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'imagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'imagePath',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> imagePathIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imagePath',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition>
+      imagePathIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'imagePath',
+        value: '',
       ));
     });
   }
@@ -797,6 +938,18 @@ extension ExerciseQuerySortBy on QueryBuilder<Exercise, Exercise, QSortBy> {
     });
   }
 
+  QueryBuilder<Exercise, Exercise, QAfterSortBy> sortByImagePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imagePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterSortBy> sortByImagePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imagePath', Sort.desc);
+    });
+  }
+
   QueryBuilder<Exercise, Exercise, QAfterSortBy> sortByMucleGroup() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'mucleGroup', Sort.asc);
@@ -860,6 +1013,18 @@ extension ExerciseQuerySortThenBy
     });
   }
 
+  QueryBuilder<Exercise, Exercise, QAfterSortBy> thenByImagePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imagePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterSortBy> thenByImagePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imagePath', Sort.desc);
+    });
+  }
+
   QueryBuilder<Exercise, Exercise, QAfterSortBy> thenByMucleGroup() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'mucleGroup', Sort.asc);
@@ -906,6 +1071,13 @@ extension ExerciseQueryWhereDistinct
     });
   }
 
+  QueryBuilder<Exercise, Exercise, QDistinct> distinctByImagePath(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imagePath', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Exercise, Exercise, QDistinct> distinctByMucleGroup(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -939,6 +1111,12 @@ extension ExerciseQueryProperty
   QueryBuilder<Exercise, String, QQueryOperations> descriptionProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'description');
+    });
+  }
+
+  QueryBuilder<Exercise, String, QQueryOperations> imagePathProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imagePath');
     });
   }
 

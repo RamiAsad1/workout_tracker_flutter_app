@@ -1,28 +1,38 @@
 part of 'workout_cubit.dart';
 
-abstract class WorkoutState extends Equatable {
-  const WorkoutState();
+class WorkoutState {
+  final List<Workout> allWorkouts;
+  final List<Workout> filteredWorkouts;
+  final bool isLoading;
+  final String? errorMessage;
 
-  @override
-  List<Object> get props => [];
-}
+  const WorkoutState({
+    required this.allWorkouts,
+    required this.filteredWorkouts,
+    required this.isLoading,
+    this.errorMessage,
+  });
 
-class WorkoutInitial extends WorkoutState {}
+  factory WorkoutState.initial() {
+    return const WorkoutState(
+      allWorkouts: [],
+      filteredWorkouts: [],
+      isLoading: false,
+      errorMessage: null,
+    );
+  }
 
-class WorkoutLoaded extends WorkoutState {
-  final List<Workout> workouts;
-
-  const WorkoutLoaded(this.workouts);
-
-  @override
-  List<Object> get props => [workouts];
-}
-
-class WorkoutError extends WorkoutState {
-  final String message;
-
-  const WorkoutError(this.message);
-
-  @override
-  List<Object> get props => [message];
+  WorkoutState copyWith({
+    List<Workout>? allWorkouts,
+    List<Workout>? filteredWorkouts,
+    bool? isLoading,
+    String? errorMessage,
+  }) {
+    return WorkoutState(
+      allWorkouts: allWorkouts ?? this.allWorkouts,
+      filteredWorkouts: filteredWorkouts ?? this.filteredWorkouts,
+      isLoading: isLoading ?? this.isLoading,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
+  }
 }

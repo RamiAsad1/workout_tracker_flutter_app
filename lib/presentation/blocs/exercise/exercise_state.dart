@@ -1,28 +1,33 @@
 part of 'exercise_cubit.dart';
 
-abstract class ExerciseState extends Equatable {
-  const ExerciseState();
+class ExerciseState {
+  final List<Exercise> allExercises;
+  final List<Exercise> filteredExercises;
+  final bool isLoading;
 
-  @override
-  List<Object> get props => [];
-}
+  ExerciseState({
+    required this.allExercises,
+    required this.filteredExercises,
+    required this.isLoading,
+  });
 
-class ExerciseInitial extends ExerciseState {}
+  factory ExerciseState.initial() {
+    return ExerciseState(
+      allExercises: [],
+      filteredExercises: [],
+      isLoading: false,
+    );
+  }
 
-class ExerciseLoaded extends ExerciseState {
-  final List<Exercise> exercises;
-
-  const ExerciseLoaded(this.exercises);
-
-  @override
-  List<Object> get props => [exercises];
-}
-
-class ExerciseError extends ExerciseState {
-  final String message;
-
-  const ExerciseError(this.message);
-
-  @override
-  List<Object> get props => [message];
+  ExerciseState copyWith({
+    List<Exercise>? allExercises,
+    List<Exercise>? filteredExercises,
+    bool? isLoading,
+  }) {
+    return ExerciseState(
+      allExercises: allExercises ?? this.allExercises,
+      filteredExercises: filteredExercises ?? this.filteredExercises,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
 }

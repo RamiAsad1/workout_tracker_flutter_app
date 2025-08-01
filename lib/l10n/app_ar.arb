@@ -11,5 +11,75 @@
     "settingsLabel": "الإعدادات",
     "@settingsLabel": {
         "description": "label for the settings bottom navigation bar item"
+    },
+    
+    "exerciseLoadError": "فشل تحميل التمارين",
+    "@exerciseLoadError": {
+        "description": "Error message displayed when exercises fail to load"
+    },
+
+    "exerciseAddError": "فشل إضافة التمرين",
+    "@exerciseAddError": {
+        "description": "Error message displayed when adding an exercise fails"
+    },
+
+    "exerciseDeleteError": "فشل حذف التمرين",
+    "@exerciseDeleteError": {
+        "description": "Error message displayed when deleting an exercise fails"
+    },
+
+    "exerciseUpdateError": "فشل تحديث التمرين",
+    "@exerciseUpdateError": {
+        "description": "Error message displayed when updating an exercise fails"
+    },
+
+    "workoutLoadError": "فشل تحميل التمارين الرياضية",
+    "@workoutLoadError": {
+        "description": "Error message displayed when workouts fail to load"
+    },
+
+    "workoutAddError": "فشل إضافة التمرين الرياضي",
+    "@workoutAddError": {
+        "description": "Error message displayed when adding a workout fails"
+    },
+
+    "workoutDeleteError": "فشل حذف التمرين الرياضي",
+    "@workoutDeleteError": {
+        "description": "Error message displayed when deleting a workout fails"
+    },
+
+    "workoutUpdateError": "فشل تحديث التمرين الرياضي",
+    "@workoutUpdateError": {
+        "description": "Error message displayed when updating a workout fails"
+    },
+
+    "searchBarHint": "ابحث عن تمارين...",
+    "@searchBarHint": {
+        "description": "Placeholder text for the exercise search bar"
+    },
+
+    "noExercisesFoundErrorMessage": "لم يتم العثور على تمارين",
+    "@noExercisesFoundErrorMessage": {
+        "description": "Message displayed when no exercises match the search criteria"
+    },
+
+    "myWorkoutsLabel": "تماريني",
+    "@myWorkoutsLabel": {
+        "description": "Label for the section displaying user's workouts"
+    },
+
+    "noWorkoutsFoundErrorMessage": "ليس لديك تمارين بعد.\nابدأ بإضافة بعض التمارين!",
+    "@noWorkoutsFoundErrorMessage": {
+        "description": "Message displayed when no workouts are found"
+    },
+
+    "lastSessionLabel": "الجلسة الأخيرة كانت: {date}",
+    "@lastSessionLabel": {
+        "description": "Label for displaying the last session date of a workout",
+        "placeholders": {
+        "date": {
+            "type": "String"
+        }
+        }
     }
 }
