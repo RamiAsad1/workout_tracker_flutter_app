@@ -170,6 +170,12 @@ abstract class AppLocalizations {
   /// **'Search exercises...'**
   String get searchBarHint;
 
+  /// Label for the screen displaying all exercises
+  ///
+  /// In en, this message translates to:
+  /// **'All Exercises'**
+  String get allExercisesLabel;
+
   /// Message displayed when no exercises match the search criteria
   ///
   /// In en, this message translates to:
@@ -193,6 +199,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Last session was: {date}'**
   String lastSessionLabel(String date);
+
+  /// Label for the button to add a new workout
+  ///
+  /// In en, this message translates to:
+  /// **'Add Workout'**
+  String get addWorkoutLabel;
+
+  /// Label for the workout name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Workout Name'**
+  String get workoutNameLabel;
+
+  /// Error message displayed when the workout name input is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a workout name'**
+  String get workoutNameError;
+
+  /// Label for the workout notes input field
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get workoutNotesLabel;
+
+  /// Label for the button to add an exercise to a workout
+  ///
+  /// In en, this message translates to:
+  /// **'Add Exercise'**
+  String get addExerciseBtnLabel;
+
+  /// Label for the button to save a workout
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveWorkoutBtnLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -6,22 +6,13 @@ part 'workout.g.dart';
 
 @collection
 class Workout {
+  Workout({required this.name, required this.notes});
+
   Id id = Isar.autoIncrement;
 
   late String name;
 
-  late DateTime date;
+  late String notes;
 
   final exercises = IsarLinks<Exercise>();
-}
-
-@embedded
-class WorkoutExercise {
-  late int exerciseId;
-
-  late int reps;
-
-  late int sets;
-
-  double? weight;
 }

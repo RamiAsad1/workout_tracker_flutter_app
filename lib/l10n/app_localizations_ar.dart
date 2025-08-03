@@ -45,6 +45,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchBarHint => 'ابحث عن تمارين...';
 
   @override
+  String get allExercisesLabel => 'جميع التمارين';
+
+  @override
   String get noExercisesFoundErrorMessage => 'لم يتم العثور على تمارين';
 
   @override
@@ -58,4 +61,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String lastSessionLabel(String date) {
     return 'الجلسة الأخيرة كانت: $date';
   }
+
+  @override
+  String get addWorkoutLabel => 'إضافة تمرين رياضي';
+
+  @override
+  String get workoutNameLabel => 'اسم التمرين';
+
+  @override
+  String get workoutNameError => 'أدخل اسمًا للتمرين';
+
+  @override
+  String get workoutNotesLabel => 'ملاحظات';
+
+  @override
+  String get addExerciseBtnLabel => 'إضافة تمرين';
+
+  @override
+  String get saveWorkoutBtnLabel => 'حفظ';
 }

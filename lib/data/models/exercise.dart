@@ -4,6 +4,17 @@ part 'exercise.g.dart';
 
 @collection
 class Exercise {
+  Exercise({
+    required this.name,
+    required this.description,
+    required this.weightType,
+    required this.muscleGroup,
+    this.reps,
+    this.sets,
+    this.weight,
+    required this.imagePath,
+  });
+
   Id id = Isar.autoIncrement;
 
   late String name;
@@ -12,7 +23,13 @@ class Exercise {
 
   late String weightType;
 
-  late String mucleGroup;
+  late String muscleGroup;
+
+  int? reps;
+
+  int? sets;
+
+  double? weight;
 
   late String imagePath;
 }

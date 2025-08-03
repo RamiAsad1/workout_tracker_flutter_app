@@ -45,6 +45,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchBarHint => 'Search exercises...';
 
   @override
+  String get allExercisesLabel => 'All Exercises';
+
+  @override
   String get noExercisesFoundErrorMessage => 'No exercises found';
 
   @override
@@ -58,4 +61,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String lastSessionLabel(String date) {
     return 'Last session was: $date';
   }
+
+  @override
+  String get addWorkoutLabel => 'Add Workout';
+
+  @override
+  String get workoutNameLabel => 'Workout Name';
+
+  @override
+  String get workoutNameError => 'Enter a workout name';
+
+  @override
+  String get workoutNotesLabel => 'Notes';
+
+  @override
+  String get addExerciseBtnLabel => 'Add Exercise';
+
+  @override
+  String get saveWorkoutBtnLabel => 'Save';
 }

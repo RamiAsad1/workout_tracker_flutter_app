@@ -58,6 +58,11 @@
         "description": "Placeholder text for the exercise search bar"
     },
 
+    "allExercisesLabel": "جميع التمارين",
+    "@allExercisesLabel": {
+        "description": "Label for the section displaying all exercises"
+    },
+
     "noExercisesFoundErrorMessage": "لم يتم العثور على تمارين",
     "@noExercisesFoundErrorMessage": {
         "description": "Message displayed when no exercises match the search criteria"
@@ -81,5 +86,35 @@
             "type": "String"
         }
         }
+    },
+
+    "addWorkoutLabel": "إضافة تمرين رياضي",
+    "@addWorkoutLabel": {
+        "description": "Label for the button to add a new workout"
+    },
+
+    "workoutNameLabel": "اسم التمرين",
+    "@workoutNameLabel": {
+        "description": "Label for the workout name input field"
+    },
+
+    "workoutNameError": "أدخل اسمًا للتمرين",
+    "@workoutNameError": {
+        "description": "Error message displayed when the workout name input is empty"
+    },
+
+    "workoutNotesLabel": "ملاحظات",
+    "@workoutNotesLabel": {
+        "description": "Label for the workout notes input field"
+    },
+
+    "addExerciseBtnLabel": "إضافة تمرين",
+    "@addExerciseBtnLabel": {
+        "description": "Label for the button to add an exercise to a workout"
+    },
+
+    "saveWorkoutBtnLabel": "حفظ",
+    "@saveWorkoutBtnLabel": {
+        "description": "Label for the button to save a workout"
     }
 }

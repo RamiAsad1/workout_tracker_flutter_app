@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/widgets/home%20screen/home_screen_contents.dart';
 import 'package:workout_tracker/presentation/widgets/misc/background_container.dart';
-import 'package:workout_tracker/screens/Home%20screen/history_screen.dart';
-import 'package:workout_tracker/screens/Home%20screen/settings_screen.dart';
+import 'package:workout_tracker/screens/home%20screen/history_screen.dart';
+import 'package:workout_tracker/screens/home%20screen/settings_screen.dart';
 
 //TODO: add localization in the cubit classes
 //TODO: settings page (for now only contain units, language change option)

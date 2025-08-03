@@ -22,6 +22,14 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     );
   }
 
+  Future<void> selectExercise(Exercise exercise) async {
+    final selectedExercises = List<Exercise>.from(state.selectedExercises);
+    if (!selectedExercises.contains(exercise)) {
+      selectedExercises.add(exercise);
+    }
+    emit(state.copyWith(selectedExercises: selectedExercises));
+  }
+
   void searchExercises(String query) {
     if (query.isEmpty) {
       emit(state.copyWith(filteredExercises: state.allExercises));

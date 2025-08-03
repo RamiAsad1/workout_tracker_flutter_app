@@ -58,6 +58,11 @@
         "description": "Placeholder text for the exercise search bar"
     },
 
+    "allExercisesLabel": "All Exercises",
+    "@allExercisesLabel": {
+        "description": "Label for the screen displaying all exercises"
+    },
+
     "noExercisesFoundErrorMessage": "No exercises found",
     "@noExercisesFoundErrorMessage": {
         "description": "Message displayed when no exercises match the search criteria"
@@ -81,5 +86,35 @@
                 "type": "String"
             }
         }
+    },
+
+    "addWorkoutLabel": "Add Workout",
+    "@addWorkoutLabel": {
+        "description": "Label for the button to add a new workout"
+    },
+
+    "workoutNameLabel": "Workout Name",
+    "@workoutNameLabel": {
+        "description": "Label for the workout name input field"
+    },
+
+    "workoutNameError": "Enter a workout name",
+    "@workoutNameError": {
+        "description": "Error message displayed when the workout name input is empty"
+    },
+
+    "workoutNotesLabel": "Notes",
+    "@workoutNotesLabel": {
+        "description": "Label for the workout notes input field"
+    },
+
+    "addExerciseBtnLabel": "Add Exercise",
+    "@addExerciseBtnLabel": {
+        "description": "Label for the button to add an exercise to a workout"
+    },
+
+    "saveWorkoutBtnLabel": "Save",
+    "@saveWorkoutBtnLabel": {
+        "description": "Label for the button to save a workout"
     }
 }

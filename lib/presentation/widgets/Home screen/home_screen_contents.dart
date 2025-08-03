@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/blocs/exercise/exercise_cubit.dart';
 import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
+import 'package:workout_tracker/presentation/widgets/form/add_workout_bottom_sheet.dart';
 import 'package:workout_tracker/presentation/widgets/misc/search_bar_widget.dart';
 
 class HomeScreenContents extends StatelessWidget {
@@ -79,16 +80,23 @@ class HomeScreenContents extends StatelessWidget {
                   final workout = workouts[index];
                   return ListTile(
                     title: Text(workout.name),
-                    subtitle: Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.lastSessionLabel(workout.date.toLocal().toString()),
-                    ),
+                    subtitle: Text(workout.notes),
                   );
                 },
               ),
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
+                  ),
+                  builder: (context) => const AddWorkoutBottomSheet(),
+                );
+              },
               backgroundColor: Theme.of(context).colorScheme.onPrimary,
               child: const Icon(Icons.add),
             ),
