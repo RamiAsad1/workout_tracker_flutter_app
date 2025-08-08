@@ -5,6 +5,7 @@ import 'package:workout_tracker/data/models/exercise.dart';
 import 'package:workout_tracker/data/repository/exercise/exercise_repository.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/language_constants.dart';
+import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
 import 'package:workout_tracker/screens/home%20screen/home_screen.dart';
 
 class AppRoot extends StatefulWidget {
@@ -96,7 +97,7 @@ class _AppRootState extends State<AppRoot> {
           description: "Leg exercise for quads and glutes.",
           weightType: "bodyweight",
           muscleGroup: "Legs",
-          imagePath: "assets/images/lunges-anatomy.webp",
+          imagePath: "assets/images/lunges-anatomy.png",
         ),
         Exercise(
           name: "Overhead Press",
@@ -145,7 +146,7 @@ class _AppRootState extends State<AppRoot> {
           description: "Triceps isolation with dumbbells.",
           weightType: "weighted",
           muscleGroup: "Triceps",
-          imagePath: "assets/images/ticeps-kickbacks-anatomy.webp",
+          imagePath: "assets/images/triceps-kickbacks-anatomy.webp",
         ),
       ];
 
@@ -163,6 +164,7 @@ class _AppRootState extends State<AppRoot> {
       final locale = await getLocale();
       if (mounted) setState(() => _locale = locale);
     });
+    context.read<WorkoutCubit>().loadWorkouts();
   }
 
   void setLocale(Locale newLocale) {

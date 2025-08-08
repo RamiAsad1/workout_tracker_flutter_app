@@ -79,4 +79,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get saveWorkoutBtnLabel => 'حفظ';
+
+  @override
+  String get exerciseAddedLabel => 'تمت إضافة التمرين';
+
+  @override
+  String get exerciseDeletedLabel => 'تم حذف التمرين';
+
+  @override
+  String get workoutSavedLabel => 'تم حفظ التمرين الرياضي';
+
+  @override
+  String get workoutDeletedLabel => 'تم حذف التمرين الرياضي';
 }

@@ -116,5 +116,25 @@
     "saveWorkoutBtnLabel": "حفظ",
     "@saveWorkoutBtnLabel": {
         "description": "Label for the button to save a workout"
+    },
+
+    "exerciseAddedLabel": "تمت إضافة التمرين",
+    "@exerciseAddedLabel": {
+        "description": "Label displayed when an exercise is successfully added to a workout"
+    },
+
+    "exerciseDeletedLabel": "تم حذف التمرين",
+    "@exerciseDeletedLabel": {
+        "description": "Label displayed when an exercise is successfully deleted from a workout"
+    },
+
+    "workoutSavedLabel": "تم حفظ التمرين الرياضي",
+    "@workoutSavedLabel": {
+        "description": "Message displayed when a workout is successfully saved"
+    },
+
+    "workoutDeletedLabel": "تم حذف التمرين الرياضي",
+    "@workoutDeletedLabel": {
+        "description": "Message displayed when a workout is successfully deleted"
     }
 }

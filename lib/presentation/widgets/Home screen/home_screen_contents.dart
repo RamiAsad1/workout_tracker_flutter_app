@@ -6,9 +6,22 @@ import 'package:workout_tracker/presentation/blocs/exercise/exercise_cubit.dart'
 import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
 import 'package:workout_tracker/presentation/widgets/form/add_workout_bottom_sheet.dart';
 import 'package:workout_tracker/presentation/widgets/misc/search_bar_widget.dart';
+import 'package:workout_tracker/screens/exercise%20screens/exercise_detail_screen.dart';
 
-class HomeScreenContents extends StatelessWidget {
+class HomeScreenContents extends StatefulWidget {
   const HomeScreenContents({super.key});
+
+  @override
+  State<HomeScreenContents> createState() => _HomeScreenContentsState();
+}
+
+class _HomeScreenContentsState extends State<HomeScreenContents> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ExerciseCubit>().loadExercises();
+    context.read<WorkoutCubit>().loadWorkouts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +41,6 @@ class HomeScreenContents extends StatelessWidget {
                 if (state.isLoading) {
                   return const Center(child: CircularProgressIndicator());
                 }
-
-                if (state.filteredExercises.isEmpty) {
-                  return Center(
-                    child: Text(
-                      AppLocalizations.of(
-                        context,
-                      )!.noExercisesFoundErrorMessage,
-                    ),
-                  );
-                }
-
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -48,18 +50,27 @@ class HomeScreenContents extends StatelessWidget {
                     return ListTile(
                       title: Text(exercise.name),
                       subtitle: Text(exercise.description),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              ExerciseDetailsScreen(exercise: exercise),
+                        ),
+                      ),
                     );
                   },
                 );
               },
             ),
-
             const SizedBox(height: 20),
-            Text(
-              AppLocalizations.of(context)!.myWorkoutsLabel,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                AppLocalizations.of(context)!.myWorkoutsLabel,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -67,8 +78,10 @@ class HomeScreenContents extends StatelessWidget {
               Center(
                 child: Text(
                   AppLocalizations.of(context)!.noWorkoutsFoundErrorMessage,
-                  style: const TextStyle(fontSize: 20, color: Colors.white),
-                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
               )
             else
@@ -78,31 +91,71 @@ class HomeScreenContents extends StatelessWidget {
                 itemCount: workouts.length,
                 itemBuilder: (context, index) {
                   final workout = workouts[index];
-                  return ListTile(
-                    title: Text(workout.name),
-                    subtitle: Text(workout.notes),
+                  return Dismissible(
+                    key: ValueKey(workout.id),
+                    direction: DismissDirection.endToStart,
+                    background: Container(
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      color: Colors.red,
+                      child: const Icon(Icons.delete, color: Colors.white),
+                    ),
+                    onDismissed: (_) {
+                      workouts.removeAt(index);
+                      context.read<WorkoutCubit>().deleteWorkout(workout.id);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '${workout.name} ${AppLocalizations.of(context)!.workoutDeletedLabel}',
+                          ),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      onTap: () => showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16),
+                          ),
+                        ),
+                        builder: (context) =>
+                            AddWorkoutBottomSheet(workout: workout),
+                      ),
+                      title: Text(
+                        workout.name,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      subtitle: Text(workout.notes),
+                    ),
                   );
                 },
               ),
-            FloatingActionButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(16),
-                    ),
-                  ),
-                  builder: (context) => const AddWorkoutBottomSheet(),
-                );
-              },
-              backgroundColor: Theme.of(context).colorScheme.onPrimary,
-              child: const Icon(Icons.add),
-            ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            ),
+            builder: (context) => const AddWorkoutBottomSheet(),
+          );
+        },
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        foregroundColor: Theme.of(context).colorScheme.primary,
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

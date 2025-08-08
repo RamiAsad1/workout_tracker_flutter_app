@@ -16,7 +16,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     emit(
       state.copyWith(
         allExercises: exercises,
-        filteredExercises: exercises,
+        filteredExercises: [],
         isLoading: false,
       ),
     );
@@ -30,14 +30,25 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     emit(state.copyWith(selectedExercises: selectedExercises));
   }
 
+  void removeExercise(Exercise exercise) {
+    final updatedList = List<Exercise>.from(state.selectedExercises)
+      ..remove(exercise);
+
+    emit(state.copyWith(selectedExercises: updatedList));
+  }
+
   void searchExercises(String query) {
     if (query.isEmpty) {
-      emit(state.copyWith(filteredExercises: state.allExercises));
+      emit(state.copyWith(filteredExercises: []));
     } else {
       final filtered = state.allExercises.where((exercise) {
         return exercise.name.toLowerCase().contains(query.toLowerCase());
       }).toList();
       emit(state.copyWith(filteredExercises: filtered));
     }
+  }
+
+  void clearSelectedExercises() {
+    emit(state.copyWith(selectedExercises: []));
   }
 }

@@ -116,5 +116,26 @@
     "saveWorkoutBtnLabel": "Save",
     "@saveWorkoutBtnLabel": {
         "description": "Label for the button to save a workout"
+    },
+
+    "exerciseAddedLabel": "Exercise added",
+    "@exerciseAddedLabel": {
+        "description": "Message displayed when an exercise is successfully added to a workout"
+    },
+
+    "exerciseDeletedLabel": "Exercise deleted",
+    "@exerciseDeletedLabel": {
+        "description": "Message displayed when an exercise is successfully deleted from a workout"
+    },
+
+    "workoutSavedLabel": "Workout saved",
+    "@workoutSavedLabel": {
+        "description": "Message displayed when a workout is successfully saved"
+    },
+
+    "workoutDeletedLabel": "Workout deleted",
+    "@workoutDeletedLabel": {
+        "description": "Message displayed when a workout is successfully deleted"
     }
+
 }

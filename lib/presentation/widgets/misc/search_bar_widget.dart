@@ -17,7 +17,20 @@ class ExerciseSearchBar extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.search),
           hintText: AppLocalizations.of(context)!.searchBarHint,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onPrimary,
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onPrimary,
+              width: 2.5,
+            ),
+          ),
           filled: true,
         ),
         onChanged: (value) => cubit.searchExercises(value),

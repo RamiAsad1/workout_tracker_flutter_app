@@ -3,19 +3,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/blocs/exercise/exercise_cubit.dart';
-import 'package:workout_tracker/data/models/exercise.dart';
-import 'package:workout_tracker/presentation/widgets/misc/background_container.dart';
+import 'package:workout_tracker/presentation/widgets/exercise/exercise_list_tile.dart';
+import 'package:workout_tracker/screens/exercise%20screens/exercise_detail_screen.dart';
 
-class ExerciseListScreen extends StatelessWidget {
+class ExerciseListScreen extends StatefulWidget {
   const ExerciseListScreen({super.key});
+
+  @override
+  State<ExerciseListScreen> createState() => _ExerciseListScreenState();
+}
+
+class _ExerciseListScreenState extends State<ExerciseListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ExerciseCubit>().loadExercises();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.allExercisesLabel),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
       ),
       body: BlocBuilder<ExerciseCubit, ExerciseState>(
         builder: (context, state) {
@@ -26,7 +36,9 @@ class ExerciseListScreen extends StatelessWidget {
             return Center(
               child: Text(
                 AppLocalizations.of(context)!.noExercisesFoundErrorMessage,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
               ),
             );
           }
@@ -37,58 +49,16 @@ class ExerciseListScreen extends StatelessWidget {
 
               return ExerciseListTile(
                 exercise: exercise,
-                onTap: () {},
-              ); // Todo: exercise details screen
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ExerciseDetailsScreen(exercise: exercise),
+                  ),
+                ),
+              );
             },
           );
         },
-      ),
-    );
-  }
-}
-
-class ExerciseListTile extends StatelessWidget {
-  final Exercise exercise;
-  final VoidCallback onTap;
-
-  const ExerciseListTile({
-    super.key,
-    required this.exercise,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BackgroundContainer(
-      child: ListTile(
-        onTap: onTap,
-        contentPadding: const EdgeInsets.all(8),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            exercise.imagePath,
-            width: 60,
-            height: 60,
-            fit: BoxFit.cover,
-          ),
-        ),
-        title: Text(
-          exercise.name,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
-        ),
-        trailing: GestureDetector(
-          onTap: () {
-            context.read<ExerciseCubit>().selectExercise(exercise);
-          },
-          child: Container(
-            padding: const EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.green, width: 2),
-            ),
-            child: const Icon(Icons.add, color: Colors.green, size: 20),
-          ),
-        ),
       ),
     );
   }

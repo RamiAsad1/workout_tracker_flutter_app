@@ -6,7 +6,7 @@ import 'package:workout_tracker/presentation/widgets/misc/background_container.d
 import 'package:workout_tracker/screens/home%20screen/history_screen.dart';
 import 'package:workout_tracker/screens/home%20screen/settings_screen.dart';
 
-//TODO: add localization in the cubit classes
+//TODO: add localization in the cubit classes + add workout edit (fix list not showing up + add sets and reps) and exercise details screen
 //TODO: settings page (for now only contain units, language change option)
 //TODO: history page (calendar of active days, last workout details)
 
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BackgroundContainer(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('W-Track'),
+          title: Text('W-Track', style: TextStyle(fontWeight: FontWeight.bold)),
           backgroundColor: Colors.transparent,
         ),
         backgroundColor: Colors.transparent,

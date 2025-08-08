@@ -235,6 +235,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get saveWorkoutBtnLabel;
+
+  /// Message displayed when an exercise is successfully added to a workout
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise added'**
+  String get exerciseAddedLabel;
+
+  /// Message displayed when an exercise is successfully deleted from a workout
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise deleted'**
+  String get exerciseDeletedLabel;
+
+  /// Message displayed when a workout is successfully saved
+  ///
+  /// In en, this message translates to:
+  /// **'Workout saved'**
+  String get workoutSavedLabel;
+
+  /// Message displayed when a workout is successfully deleted
+  ///
+  /// In en, this message translates to:
+  /// **'Workout deleted'**
+  String get workoutDeletedLabel;
 }
 
 class _AppLocalizationsDelegate

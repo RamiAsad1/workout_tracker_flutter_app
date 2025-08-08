@@ -14,6 +14,11 @@ class IsarWorkoutRepository implements WorkoutRepository {
   @override
   Future<List<Workout>> fetchWorkouts() async {
     List<Workout> fetchedWorkouts = await isar.workouts.where().findAll();
+
+    for (final workout in fetchedWorkouts) {
+      await workout.exercises.load();
+    }
+
     _workouts.clear();
     _workouts.addAll(fetchedWorkouts);
 
@@ -27,8 +32,6 @@ class IsarWorkoutRepository implements WorkoutRepository {
       await isar.workouts.put(workout);
       await workout.exercises.save();
     });
-
-    await fetchWorkouts();
   }
 
   @override
@@ -36,8 +39,6 @@ class IsarWorkoutRepository implements WorkoutRepository {
     await isar.writeTxn(() async {
       await isar.workouts.put(workout);
     });
-
-    await fetchWorkouts();
   }
 
   @override
@@ -45,7 +46,5 @@ class IsarWorkoutRepository implements WorkoutRepository {
     await isar.writeTxn(() async {
       await isar.workouts.delete(id);
     });
-
-    await fetchWorkouts();
   }
 }

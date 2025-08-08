@@ -79,4 +79,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveWorkoutBtnLabel => 'Save';
+
+  @override
+  String get exerciseAddedLabel => 'Exercise added';
+
+  @override
+  String get exerciseDeletedLabel => 'Exercise deleted';
+
+  @override
+  String get workoutSavedLabel => 'Workout saved';
+
+  @override
+  String get workoutDeletedLabel => 'Workout deleted';
 }
