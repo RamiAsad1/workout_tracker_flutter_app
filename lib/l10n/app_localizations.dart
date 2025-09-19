@@ -259,6 +259,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Workout deleted'**
   String get workoutDeletedLabel;
+
+  /// Label for the units selection in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Units'**
+  String get unitsLabel;
+
+  /// Label for the language selection in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageLabel;
+
+  /// Title for the description card in the exercise details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get descriptionCardTitle;
+
+  /// Title for the weight type card in the exercise details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Weight Type'**
+  String get weightTypeCardTitle;
+
+  /// Title for the muscle group card in the exercise details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Muscle Group'**
+  String get muscleGroupCardTitle;
+
+  /// Title for the weight card in the exercise details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get weightCardTitle;
+
+  /// Label for the reps done input in the exercise details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Reps Done'**
+  String get repsDoneLabel;
+
+  /// Error message displayed when the reps done input is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the number of reps done'**
+  String get repsDoneError;
+
+  /// Error message displayed when the weight input is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the weight lifted'**
+  String get weightError;
 }
 
 class _AppLocalizationsDelegate

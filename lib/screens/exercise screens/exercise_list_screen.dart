@@ -49,10 +49,14 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
 
               return ExerciseListTile(
                 exercise: exercise,
+                isAdded: false,
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => ExerciseDetailsScreen(exercise: exercise),
+                    builder: (_) => ExerciseDetailsScreen(
+                      exercise: exercise,
+                      isEditing: false,
+                    ),
                   ),
                 ),
               );

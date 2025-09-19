@@ -43,19 +43,21 @@ void main() async {
                 ExerciseCubit(context.read<ExerciseRepository>()),
           ),
         ],
-        child: const MyApp(),
+        child: MyApp(isar: isar),
       ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.isar});
+
+  final Isar isar;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const AppRoot(),
+      home: AppRoot(isar: isar),
       debugShowCheckedModeBanner: false,
     );
   }

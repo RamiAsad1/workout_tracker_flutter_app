@@ -24,10 +24,11 @@ class ExerciseCubit extends Cubit<ExerciseState> {
 
   Future<void> selectExercise(Exercise exercise) async {
     final selectedExercises = List<Exercise>.from(state.selectedExercises);
-    if (!selectedExercises.contains(exercise)) {
+
+    if (!selectedExercises.any((e) => e.id == exercise.id)) {
       selectedExercises.add(exercise);
+      emit(state.copyWith(selectedExercises: selectedExercises));
     }
-    emit(state.copyWith(selectedExercises: selectedExercises));
   }
 
   void removeExercise(Exercise exercise) {

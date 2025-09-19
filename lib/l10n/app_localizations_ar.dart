@@ -91,4 +91,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get workoutDeletedLabel => 'تم حذف التمرين الرياضي';
+
+  @override
+  String get unitsLabel => 'الوحدة';
+
+  @override
+  String get languageLabel => 'اللغة';
+
+  @override
+  String get descriptionCardTitle => 'الوصف';
+
+  @override
+  String get weightTypeCardTitle => 'نوع الوزن';
+
+  @override
+  String get muscleGroupCardTitle => 'المجموعة العضلية';
+
+  @override
+  String get weightCardTitle => 'الوزن';
+
+  @override
+  String get repsDoneLabel => 'عدد التكرارات';
+
+  @override
+  String get repsDoneError => 'أدخل عدد التكرارات';
+
+  @override
+  String get weightError => 'أدخل الوزن المرفوع';
 }

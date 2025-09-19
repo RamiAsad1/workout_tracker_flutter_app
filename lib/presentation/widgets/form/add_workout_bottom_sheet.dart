@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,6 +7,7 @@ import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/blocs/exercise/exercise_cubit.dart';
 import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
 import 'package:workout_tracker/presentation/widgets/exercise/exercise_list_tile.dart';
+import 'package:workout_tracker/screens/exercise%20screens/exercise_detail_screen.dart';
 import 'package:workout_tracker/screens/exercise%20screens/exercise_list_screen.dart';
 
 class AddWorkoutBottomSheet extends StatefulWidget {
@@ -31,11 +30,17 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
     super.initState();
     _nameController = TextEditingController(text: widget.workout?.name ?? '');
     _notesController = TextEditingController(text: widget.workout?.notes ?? '');
-    if (widget.workout?.exercises != null) {
-      log(
-        "Exercises linked to workout: ${widget.workout!.exercises.map((e) => e.name)}",
-      );
-      _selectedExercises.addAll(widget.workout!.exercises.toList());
+
+    _loadWorkoutExercises();
+  }
+
+  Future<void> _loadWorkoutExercises() async {
+    if (widget.workout != null) {
+      await widget.workout!.exercises.load();
+
+      setState(() {
+        _selectedExercises.addAll(widget.workout!.exercises.toList());
+      });
     } else {
       _selectedExercises.addAll(
         context.read<ExerciseCubit>().state.selectedExercises,
@@ -52,10 +57,16 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
 
   Future<void> _saveWorkout() async {
     if (_formKey.currentState!.validate()) {
+      final currentSelectedExercises = context
+          .read<ExerciseCubit>()
+          .state
+          .selectedExercises;
+
       context.read<WorkoutCubit>().addWorkout(
         Workout(name: _nameController.text, notes: _notesController.text),
-        _selectedExercises,
+        currentSelectedExercises,
       );
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)!.workoutSavedLabel),
@@ -155,11 +166,10 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
                   if (state.isLoading) {
                     return const Center(child: CircularProgressIndicator());
                   }
-
                   return ListView.builder(
-                    itemCount: state.selectedExercises.length,
+                    itemCount: _selectedExercises.length,
                     itemBuilder: (context, index) {
-                      final exercise = state.selectedExercises[index];
+                      final exercise = _selectedExercises[index];
                       return Dismissible(
                         key: ValueKey(exercise.id),
                         direction: DismissDirection.endToStart,
@@ -184,7 +194,18 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
                         },
                         child: ExerciseListTile(
                           exercise: exercise,
-                          onTap: () {},
+                          isAdded: true,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ExerciseDetailsScreen(
+                                  exercise: exercise,
+                                  isEditing: true,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       );
                     },

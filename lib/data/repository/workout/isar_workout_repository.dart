@@ -9,27 +9,25 @@ class IsarWorkoutRepository implements WorkoutRepository {
 
   IsarWorkoutRepository(this.isar);
 
-  final List<Workout> _workouts = [];
-
   @override
   Future<List<Workout>> fetchWorkouts() async {
-    List<Workout> fetchedWorkouts = await isar.workouts.where().findAll();
+    final workouts = await isar.workouts.where().findAll();
 
-    for (final workout in fetchedWorkouts) {
+    for (var workout in workouts) {
       await workout.exercises.load();
     }
 
-    _workouts.clear();
-    _workouts.addAll(fetchedWorkouts);
-
-    return _workouts;
+    return workouts;
   }
 
   @override
   Future<void> addWorkout(Workout workout, List<Exercise> exercises) async {
     await isar.writeTxn(() async {
-      workout.exercises.addAll(exercises);
+      for (var exercise in exercises) {
+        await isar.exercises.put(exercise);
+      }
       await isar.workouts.put(workout);
+      workout.exercises.addAll(exercises);
       await workout.exercises.save();
     });
   }

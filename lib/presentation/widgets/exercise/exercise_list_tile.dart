@@ -8,11 +8,13 @@ import 'package:workout_tracker/presentation/widgets/misc/background_container.d
 
 class ExerciseListTile extends StatelessWidget {
   final Exercise exercise;
+  final bool isAdded;
   final VoidCallback onTap;
 
   const ExerciseListTile({
     super.key,
     required this.exercise,
+    required this.isAdded,
     required this.onTap,
   });
 
@@ -44,29 +46,31 @@ class ExerciseListTile extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        trailing: GestureDetector(
-          onTap: () {
-            context.read<ExerciseCubit>().selectExercise(exercise);
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  '${exercise.name} ${AppLocalizations.of(context)!.exerciseAddedLabel}',
+        trailing: isAdded
+            ? null
+            : GestureDetector(
+                onTap: () {
+                  context.read<ExerciseCubit>().selectExercise(exercise);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        '${exercise.name} ${AppLocalizations.of(context)!.exerciseAddedLabel}',
+                      ),
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.green, width: 2),
+                  ),
+                  child: isSelected
+                      ? const Icon(Icons.check, color: Colors.green, size: 20)
+                      : const Icon(Icons.add, color: Colors.green, size: 20),
                 ),
-                duration: const Duration(seconds: 2),
               ),
-            );
-          },
-          child: Container(
-            padding: const EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.green, width: 2),
-            ),
-            child: isSelected
-                ? const Icon(Icons.check, color: Colors.green, size: 20)
-                : const Icon(Icons.add, color: Colors.green, size: 20),
-          ),
-        ),
       ),
     );
   }

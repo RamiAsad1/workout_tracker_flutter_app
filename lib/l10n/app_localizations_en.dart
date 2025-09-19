@@ -91,4 +91,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get workoutDeletedLabel => 'Workout deleted';
+
+  @override
+  String get unitsLabel => 'Units';
+
+  @override
+  String get languageLabel => 'Language';
+
+  @override
+  String get descriptionCardTitle => 'Description';
+
+  @override
+  String get weightTypeCardTitle => 'Weight Type';
+
+  @override
+  String get muscleGroupCardTitle => 'Muscle Group';
+
+  @override
+  String get weightCardTitle => 'Weight';
+
+  @override
+  String get repsDoneLabel => 'Reps Done';
+
+  @override
+  String get repsDoneError => 'Enter the number of reps done';
+
+  @override
+  String get weightError => 'Enter the weight lifted';
 }

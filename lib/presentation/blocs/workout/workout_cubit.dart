@@ -12,29 +12,15 @@ class WorkoutCubit extends Cubit<WorkoutState> {
   WorkoutCubit(this.repository) : super(WorkoutState.initial());
 
   Future<void> loadWorkouts() async {
-    emit(
-      state.copyWith(
-        allWorkouts: [],
-        filteredWorkouts: [],
-        isLoading: true,
-        errorMessage: null,
-      ),
-    );
-
+    emit(state.copyWith(isLoading: true));
     try {
       final workouts = await repository.fetchWorkouts();
-      emit(
-        state.copyWith(
-          allWorkouts: List<Workout>.from(workouts),
-          filteredWorkouts: List<Workout>.from(workouts),
-          isLoading: false,
-        ),
-      );
+      emit(state.copyWith(allWorkouts: workouts, isLoading: false));
     } catch (e) {
       emit(
         state.copyWith(
           isLoading: false,
-          errorMessage: 'Failed to load workouts, please try again later',
+          errorMessage: 'Failed to load workouts',
         ),
       );
     }

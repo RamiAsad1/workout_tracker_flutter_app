@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/widgets/home%20screen/home_screen_contents.dart';
@@ -6,12 +7,15 @@ import 'package:workout_tracker/presentation/widgets/misc/background_container.d
 import 'package:workout_tracker/screens/home%20screen/history_screen.dart';
 import 'package:workout_tracker/screens/home%20screen/settings_screen.dart';
 
-//TODO: add localization in the cubit classes + add workout edit (fix list not showing up + add sets and reps) and exercise details screen
-//TODO: settings page (for now only contain units, language change option)
-//TODO: history page (calendar of active days, last workout details)
+//TODO: todos in exercise detail screen
+//TODO: save reps and weight
+//TODO: history page (calendar of active days)
+//TODO: settings page error
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.isar});
+
+  final Isar isar;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -24,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final List<Widget> screens = [
       HistoryScreen(),
-      HomeScreenContents(),
+      HomeScreenContents(isar: widget.isar),
       SettingsScreen(),
     ];
 

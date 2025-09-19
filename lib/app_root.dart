@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:isar/isar.dart';
 
 import 'package:workout_tracker/data/models/exercise.dart';
 import 'package:workout_tracker/data/repository/exercise/exercise_repository.dart';
@@ -9,7 +10,9 @@ import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
 import 'package:workout_tracker/screens/home%20screen/home_screen.dart';
 
 class AppRoot extends StatefulWidget {
-  const AppRoot({super.key});
+  const AppRoot({super.key, required this.isar});
+
+  final Isar isar;
 
   static void setLocale(BuildContext context, Locale newLocale) {
     final state = context.findAncestorStateOfType<_AppRootState>();
@@ -215,7 +218,7 @@ class _AppRootState extends State<AppRoot> {
       locale: _locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomeScreen(),
+      home: HomeScreen(isar: widget.isar),
     );
   }
 }

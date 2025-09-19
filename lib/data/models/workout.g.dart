@@ -14,8 +14,8 @@ extension GetWorkoutCollection on Isar {
 }
 
 const WorkoutSchema = CollectionSchema(
-  name: r'Workout',
-  id: 1535508263686820971,
+  name: r'workouts',
+  id: 2258596308129420561,
   properties: {
     r'name': PropertySchema(
       id: 0,
@@ -36,9 +36,9 @@ const WorkoutSchema = CollectionSchema(
   indexes: {},
   links: {
     r'exercises': LinkSchema(
-      id: 1523982818738911248,
+      id: 2443225691379157954,
       name: r'exercises',
-      target: r'Exercise',
+      target: r'exercises',
       single: false,
     )
   },

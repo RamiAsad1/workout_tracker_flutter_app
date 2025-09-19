@@ -136,5 +136,48 @@
     "workoutDeletedLabel": "تم حذف التمرين الرياضي",
     "@workoutDeletedLabel": {
         "description": "Message displayed when a workout is successfully deleted"
+    },
+
+    "unitsLabel": "الوحدة",
+    "@unitsLabel": {
+        "description": "Label for the units selection in settings"
+    },  
+
+    "languageLabel": "اللغة",
+    "@languageLabel": {
+        "description": "Label for the language selection in settings"
+    },
+
+    "descriptionCardTitle": "الوصف",
+    "@descriptionCardTitle": {
+        "description": "Title for the description card in the exercise details screen"
+    },
+    "weightTypeCardTitle": "نوع الوزن",
+    "@weightTypeCardTitle": {
+        "description": "Title for the weight type card in the exercise details screen"
+    },
+    "muscleGroupCardTitle": "المجموعة العضلية",
+    "@muscleGroupCardTitle": {
+        "description": "Title for the muscle group card in the exercise details screen"
+    },
+    "weightCardTitle": "الوزن",
+    "@weightCardTitle": {
+        "description": "Title for the weight card in the exercise details screen"
+    },
+
+    "repsDoneLabel": "عدد التكرارات",
+    "@repsDoneLabel": {
+        "description": "Label for the reps done input in the exercise details screen"
+    },
+
+    "repsDoneError": "أدخل عدد التكرارات",
+    "@repsDoneError": {
+        "description": "Error message displayed when the reps done input is empty"
+    },
+
+    "weightError": "أدخل الوزن المرفوع",
+    "@weightError": {
+        "description": "Error message displayed when the weight input is empty"
     }
+
 }

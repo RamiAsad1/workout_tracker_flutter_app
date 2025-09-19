@@ -14,8 +14,8 @@ extension GetExerciseCollection on Isar {
 }
 
 const ExerciseSchema = CollectionSchema(
-  name: r'Exercise',
-  id: 2972066467915231902,
+  name: r'exercises',
+  id: 1430142670657465928,
   properties: {
     r'description': PropertySchema(
       id: 0,
@@ -64,7 +64,14 @@ const ExerciseSchema = CollectionSchema(
   deserializeProp: _exerciseDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {},
+  links: {
+    r'workouts': LinkSchema(
+      id: 5217479367648667630,
+      name: r'workouts',
+      target: r'workouts',
+      single: false,
+    )
+  },
   embeddedSchemas: {},
   getId: _exerciseGetId,
   getLinks: _exerciseGetLinks,
@@ -155,11 +162,12 @@ Id _exerciseGetId(Exercise object) {
 }
 
 List<IsarLinkBase<dynamic>> _exerciseGetLinks(Exercise object) {
-  return [];
+  return [object.workouts];
 }
 
 void _exerciseAttach(IsarCollection<dynamic> col, Id id, Exercise object) {
   object.id = id;
+  object.workouts.attach(col, col.isar.collection<Workout>(), r'workouts', id);
 }
 
 extension ExerciseQueryWhereSort on QueryBuilder<Exercise, Exercise, QWhere> {
@@ -1168,7 +1176,65 @@ extension ExerciseQueryObject
     on QueryBuilder<Exercise, Exercise, QFilterCondition> {}
 
 extension ExerciseQueryLinks
-    on QueryBuilder<Exercise, Exercise, QFilterCondition> {}
+    on QueryBuilder<Exercise, Exercise, QFilterCondition> {
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> workouts(
+      FilterQuery<Workout> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'workouts');
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> workoutsLengthEqualTo(
+      int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'workouts', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> workoutsIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'workouts', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> workoutsIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'workouts', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition>
+      workoutsLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'workouts', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition>
+      workoutsLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'workouts', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<Exercise, Exercise, QAfterFilterCondition> workoutsLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'workouts', lower, includeLower, upper, includeUpper);
+    });
+  }
+}
 
 extension ExerciseQuerySortBy on QueryBuilder<Exercise, Exercise, QSortBy> {
   QueryBuilder<Exercise, Exercise, QAfterSortBy> sortByDescription() {
