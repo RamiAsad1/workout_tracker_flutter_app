@@ -178,6 +178,22 @@
     "weightError": "أدخل الوزن المرفوع",
     "@weightError": {
         "description": "Error message displayed when the weight input is empty"
+    },
+
+    "btnWorkoutPreviousSets": "المجموعات السابقة",
+    "@btnWorkoutPreviousSets": {
+        "description": "Label for the button to view previous sets in the exercise details screen"
+    
+    },
+
+    "repsNameLabel": "التكرارات",
+    "@repsNameLabel": {
+        "description": "Label for the reps input field in the set data bottom sheet"
+    },
+
+    "weightNameLabel": "الوزن",
+    "@weightNameLabel": {
+        "description": "Label for the weight input field in the set data bottom sheet"
     }
 
 }

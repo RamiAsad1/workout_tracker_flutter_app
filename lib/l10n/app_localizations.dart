@@ -313,6 +313,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter the weight lifted'**
   String get weightError;
+
+  /// Label for the button to view previous sets in the exercise details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Sets'**
+  String get btnWorkoutPreviousSets;
+
+  /// Label for the reps input field in the set data bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Reps'**
+  String get repsNameLabel;
+
+  /// Label for the weight input field in the set data bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get weightNameLabel;
 }
 
 class _AppLocalizationsDelegate

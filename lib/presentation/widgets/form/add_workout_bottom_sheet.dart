@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:workout_tracker/data/models/exercise.dart';
-import 'package:workout_tracker/data/models/workout.dart';
+import 'package:workout_tracker/data/isar%20models/exercise.dart';
+import 'package:workout_tracker/data/isar%20models/workout.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/blocs/exercise/exercise_cubit.dart';
 import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
@@ -11,9 +11,14 @@ import 'package:workout_tracker/screens/exercise%20screens/exercise_detail_scree
 import 'package:workout_tracker/screens/exercise%20screens/exercise_list_screen.dart';
 
 class AddWorkoutBottomSheet extends StatefulWidget {
-  const AddWorkoutBottomSheet({super.key, this.workout});
+  const AddWorkoutBottomSheet({
+    super.key,
+    this.workout,
+    required this.updating,
+  });
 
   final Workout? workout;
+  final bool updating;
 
   @override
   State<AddWorkoutBottomSheet> createState() => _AddWorkoutBottomSheetState();
@@ -62,17 +67,37 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
           .state
           .selectedExercises;
 
-      context.read<WorkoutCubit>().addWorkout(
-        Workout(name: _nameController.text, notes: _notesController.text),
-        currentSelectedExercises,
-      );
+      if (widget.updating && widget.workout != null) {
+        final updatedWorkout = Workout(
+          name: _nameController.text,
+          notes: _notesController.text,
+        )..id = widget.workout!.id;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalizations.of(context)!.workoutSavedLabel),
-          duration: const Duration(seconds: 2),
-        ),
-      );
+        context.read<WorkoutCubit>().updateWorkout(
+          updatedWorkout,
+          currentSelectedExercises,
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.workoutSavedLabel),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      } else {
+        context.read<WorkoutCubit>().addWorkout(
+          Workout(name: _nameController.text, notes: _notesController.text),
+          currentSelectedExercises,
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.workoutSavedLabel),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+
       context.read<ExerciseCubit>().clearSelectedExercises();
       Navigator.pop(context);
     }
@@ -101,13 +126,6 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
                   color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(2),
                 ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              AppLocalizations.of(context)!.addWorkoutLabel,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
             const SizedBox(height: 12),
@@ -199,10 +217,8 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ExerciseDetailsScreen(
-                                  exercise: exercise,
-                                  isEditing: true,
-                                ),
+                                builder: (context) =>
+                                    ExerciseDetailsScreen(exercise: exercise),
                               ),
                             );
                           },
@@ -213,7 +229,7 @@ class _AddWorkoutBottomSheetState extends State<AddWorkoutBottomSheet> {
                 },
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
             Row(
               children: [
                 ElevatedButton.icon(

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:isar/isar.dart';
 
-import 'package:workout_tracker/data/models/workout.dart';
+import 'package:workout_tracker/data/isar%20models/workout.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/presentation/blocs/exercise/exercise_cubit.dart';
 import 'package:workout_tracker/presentation/blocs/workout/workout_cubit.dart';
 import 'package:workout_tracker/presentation/widgets/form/add_workout_bottom_sheet.dart';
 import 'package:workout_tracker/presentation/widgets/misc/search_bar_widget.dart';
 import 'package:workout_tracker/screens/exercise%20screens/exercise_detail_screen.dart';
+import 'package:workout_tracker/screens/workout_screens/workout_details_screen.dart';
 
 class HomeScreenContents extends StatefulWidget {
   const HomeScreenContents({super.key, required this.isar});
@@ -57,10 +58,8 @@ class _HomeScreenContentsState extends State<HomeScreenContents> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => ExerciseDetailsScreen(
-                            exercise: exercise,
-                            isEditing: false,
-                          ),
+                          builder: (_) =>
+                              ExerciseDetailsScreen(exercise: exercise),
                         ),
                       ),
                     );
@@ -119,28 +118,42 @@ class _HomeScreenContentsState extends State<HomeScreenContents> {
                       );
                     },
                     child: ListTile(
-                      onTap: () async {
-                        final workoutWithExercises = await widget.isar.workouts
-                            .where()
-                            .idEqualTo(workout.id)
-                            .findFirst();
+                      trailing: IconButton(
+                        onPressed: () async {
+                          final workoutWithExercises = await widget
+                              .isar
+                              .workouts
+                              .where()
+                              .idEqualTo(workout.id)
+                              .findFirst();
 
-                        if (workoutWithExercises != null) {
-                          await workoutWithExercises.exercises.load();
-                          showModalBottomSheet(
-                            // ignore: use_build_context_synchronously
-                            context: context,
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(16),
+                          if (workoutWithExercises != null) {
+                            await workoutWithExercises.exercises.load();
+                            showModalBottomSheet(
+                              // ignore: use_build_context_synchronously
+                              context: context,
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(16),
+                                ),
                               ),
-                            ),
-                            builder: (context) =>
-                                AddWorkoutBottomSheet(workout: workout),
-                          );
-                        }
-                      },
+                              builder: (context) => AddWorkoutBottomSheet(
+                                workout: workout,
+                                updating: true,
+                              ),
+                            );
+                          }
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              WorkoutDetailsScreen(workout: workout),
+                        ),
+                      ),
                       title: Text(
                         workout.name,
                         style: Theme.of(context).textTheme.headlineSmall
@@ -165,7 +178,7 @@ class _HomeScreenContentsState extends State<HomeScreenContents> {
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             ),
-            builder: (context) => const AddWorkoutBottomSheet(),
+            builder: (context) => const AddWorkoutBottomSheet(updating: false),
           );
         },
         backgroundColor: Theme.of(context).colorScheme.onPrimary,

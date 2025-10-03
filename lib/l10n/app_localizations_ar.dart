@@ -118,4 +118,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get weightError => 'أدخل الوزن المرفوع';
+
+  @override
+  String get btnWorkoutPreviousSets => 'المجموعات السابقة';
+
+  @override
+  String get repsNameLabel => 'التكرارات';
+
+  @override
+  String get weightNameLabel => 'الوزن';
 }

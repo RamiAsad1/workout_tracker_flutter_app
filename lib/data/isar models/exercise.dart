@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
-import 'package:workout_tracker/data/models/workout.dart';
+import 'package:workout_tracker/data/isar%20models/set_data.dart';
+import 'package:workout_tracker/data/isar%20models/workout.dart';
 
 part 'exercise.g.dart';
 
@@ -11,9 +12,6 @@ class Exercise {
     required this.description,
     required this.weightType,
     required this.muscleGroup,
-    this.reps,
-    this.sets,
-    this.weight,
     required this.imagePath,
   });
 
@@ -23,12 +21,10 @@ class Exercise {
   late String description;
   late String weightType;
   late String muscleGroup;
-  int? reps;
-  int? sets;
-  double? weight;
   late String imagePath;
 
   final workouts = IsarLinks<Workout>();
+  final sets = IsarLinks<SetData>();
 
   Map<String, dynamic> toJson() {
     return {
@@ -37,9 +33,6 @@ class Exercise {
       'description': description,
       'weightType': weightType,
       'muscleGroup': muscleGroup,
-      'reps': reps,
-      'sets': sets,
-      'weight': weight,
       'imagePath': imagePath,
     };
   }
@@ -50,9 +43,6 @@ class Exercise {
       description: json['description'],
       weightType: json['weightType'],
       muscleGroup: json['muscleGroup'],
-      reps: json['reps'],
-      sets: json['sets'],
-      weight: json['weight'],
       imagePath: json['imagePath'],
     )..id = json['id'];
   }

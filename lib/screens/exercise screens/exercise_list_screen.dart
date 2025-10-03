@@ -53,10 +53,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => ExerciseDetailsScreen(
-                      exercise: exercise,
-                      isEditing: false,
-                    ),
+                    builder: (_) => ExerciseDetailsScreen(exercise: exercise),
                   ),
                 ),
               );

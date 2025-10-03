@@ -14,7 +14,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsScreen> {
-  String _selectedUnit = 'Metric';
+  String _selectedUnit = 'kg';
   Language _selectedLanguage = Language.languages().first;
 
   final List<String> _units = ['kg', 'lb'];
@@ -105,6 +105,7 @@ class _SettingsPageState extends State<SettingsScreen> {
                     await _saveLanguage(language);
 
                     Locale locale = await setLocale(language.languageCode);
+                    // ignore: use_build_context_synchronously
                     AppRoot.setLocale(context, locale);
                   }
                 },

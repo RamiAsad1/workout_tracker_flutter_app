@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:workout_tracker/data/models/exercise.dart';
+import 'package:workout_tracker/data/isar%20models/exercise.dart';
 
-import 'package:workout_tracker/data/models/workout.dart';
+import 'package:workout_tracker/data/isar%20models/workout.dart';
 import 'package:workout_tracker/data/repository/workout/workout_repository.dart';
 
 part 'workout_state.dart';
@@ -41,10 +41,10 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     }
   }
 
-  Future<void> updateWorkout(Workout workout) async {
+  Future<void> updateWorkout(Workout workout, List<Exercise> exercises) async {
     emit(state.copyWith(isLoading: true, errorMessage: null));
     try {
-      await repository.updateWorkout(workout);
+      await repository.updateWorkout(workout, exercises);
       await loadWorkouts();
     } catch (e) {
       emit(

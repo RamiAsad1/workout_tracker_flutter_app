@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:workout_tracker/data/models/exercise.dart';
+import 'package:workout_tracker/data/isar%20models/exercise.dart';
 
 part 'workout.g.dart';
 

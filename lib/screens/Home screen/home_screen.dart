@@ -7,10 +7,9 @@ import 'package:workout_tracker/presentation/widgets/misc/background_container.d
 import 'package:workout_tracker/screens/home%20screen/history_screen.dart';
 import 'package:workout_tracker/screens/home%20screen/settings_screen.dart';
 
-//TODO: todos in exercise detail screen
-//TODO: save reps and weight
+//TODO: save reps and weight (add a new screen for sets sorted by dates, with option to add new set from there)
 //TODO: history page (calendar of active days)
-//TODO: settings page error
+//TODO: fix workout saving bug (error when removing an exercise)
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.isar});

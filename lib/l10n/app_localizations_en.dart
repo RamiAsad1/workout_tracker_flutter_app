@@ -118,4 +118,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get weightError => 'Enter the weight lifted';
+
+  @override
+  String get btnWorkoutPreviousSets => 'Previous Sets';
+
+  @override
+  String get repsNameLabel => 'Reps';
+
+  @override
+  String get weightNameLabel => 'Weight';
 }

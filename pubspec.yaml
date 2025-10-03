@@ -38,6 +38,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.4.6
   flutter_svg: ^2.2.0
+  grouped_list: ^6.0.0
   image_picker: ^1.1.2
   intl: any
   isar: ^3.1.0+1

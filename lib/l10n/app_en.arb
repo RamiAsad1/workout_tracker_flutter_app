@@ -181,6 +181,21 @@
     "weightError": "Enter the weight lifted",
     "@weightError": {
         "description": "Error message displayed when the weight input is empty"
+    },
+
+    "btnWorkoutPreviousSets": "Previous Sets",
+    "@btnWorkoutPreviousSets": {
+        "description": "Label for the button to view previous sets in the exercise details screen"
+    },
+
+    "repsNameLabel": "Reps",
+    "@repsNameLabel": {
+        "description": "Label for the reps input field in the set data bottom sheet"
+    },
+
+    "weightNameLabel": "Weight",
+    "@weightNameLabel": {
+        "description": "Label for the weight input field in the set data bottom sheet"
     }
 
 }

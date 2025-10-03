@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:isar/isar.dart';
 
-import 'package:workout_tracker/data/models/exercise.dart';
+import 'package:workout_tracker/data/isar%20models/exercise.dart';
 import 'package:workout_tracker/data/repository/exercise/exercise_repository.dart';
 import 'package:workout_tracker/l10n/app_localizations.dart';
 import 'package:workout_tracker/language_constants.dart';
